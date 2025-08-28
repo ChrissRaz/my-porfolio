@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - Fullstack / Chef de projet / Business Analyst</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      header {
+        text-align: center;
+        padding: 5rem 1rem;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        width: 100%;
+      }
+
+      header img {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        margin-bottom: 1rem;
+        border: 4px solid #007bff22;
+        /* animation: fadeIn 2s ease forwards; */
+         animation: bounceIn 0.5s ease-out;
+      }
+
+      @keyframes bounceIn {
+  0% {
+    transform: translateY(-200px) scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(30px) scale(1.05);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-10px) scale(0.95);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+      .tagline {
+        position: relative;
+        max-width: 750px;
+        margin: 20px auto 0;
+        margin-top: 50px;
+        padding: 18px 25px;
+        font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+        line-height: 1.8;
+        color: #1a202c;
+        font-weight: 500;
+        text-align: center;
+        background: linear-gradient(135deg, #f9f9f9, #ffffff);
+        border-left: 5px solid #ff6b35;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .tagline i {
+        color: #d1831f;
+        margin-right: 10px;
+        font-size: 5rem;
+      }
+
+      .tagline:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        margin: 0.5rem 0;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: #666;
+      }
+
+      
+
+      section {
+        max-width: 1100px;
+        margin: 3rem auto;
+        padding: 0 1rem;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+
+      section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .about p {
+        font-size: 1.2rem;
+        text-align: center;
+      }
+
+      .divider {
+        width: 60px;
+        height: 4px;
+        background: #d1831f;
+        margin: 1.5rem auto;
+        border-radius: 2px;
+      }
+
+      .skills h3,
+      .services h3,
+      .contact h3,
+      .references h3 {
+        text-align: center;
+        font-size: 1.8rem;
+      }
+
+      .skills .tech-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .tech-item {
+        text-align: center;
+        width: 120px;
+        transition: transform 0.3s;
+      }
+
+      .tech-item:hover {
+        transform: translateY(-5px) scale(1.05);
+      }
+
+      .tech-item img,
+      .tech-item i {
+        width: 55px;
+        height: 55px;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: #635b57;
+      }
+
+      /* Services */
+      .services .service-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .service-item {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .service-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .service-item i {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #635b57;
+      }
+
+      .service-item h4 {
+        margin: 0.5rem 0;
+        font-size: 1.2rem;
+      }
+
+      .references {
+        padding: 80px 20px;
+        text-align: center;
+        position: relative;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+        font-weight: bold;
+        position: relative;
+      }
+
+      .references-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .reference-card {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .reference-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .reference-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .reference-info {
+        padding: 20px;
+      }
+
+      .reference-info h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .reference-info p {
+        font-size: 1rem;
+        color: #555;
+      }
+
+      /* Contact */
+      form {
+        max-width: 600px;
+        margin: 2rem auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      input,
+      textarea,
+      button {
+        padding: 0.8rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+        width: 100%;
+      }
+
+      button {
+        background: #d1831f;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #0056b3;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 1rem;
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Décorations flottantes */
+      .decor {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(0, 118, 182, 0.05);
+        animation: move 20s linear infinite;
+        z-index: -1;
+      }
+
+      .circle {
+        width: 800px;
+        height: 800px;
+        top: 10%;
+        left: 10px;
+      }
+      .circle2 {
+        width: 300px;
+        height: 300px;
+        bottom: 15%;
+        right: 10px;
+      }
+      .square {
+        width: 150px;
+        height: 150px;
+        top: 70%;
+        left: 10%;
+        background: rgba(2, 62, 138, 0.1);
+        border-radius: 10px;
+      }
+      .cross::before,
+      .cross::after {
+        content: "";
+        position: absolute;
+        background: rgba(0, 119, 182, 0.06);
+      }
+      .cross {
+        width: 80px;
+        height: 80px;
+        top: 40%;
+        right: 10%;
+        position: absolute;
+      }
+      .cross::before {
+        width: 10px;
+        height: 100%;
+        left: 35px;
+        top: 0;
+      }
+      .cross::after {
+        width: 100%;
+        height: 10px;
+        top: 35px;
+        left: 0;
+      }
+
+      @keyframes move {
+        from {
+          transform: rotate(0deg) translateY(0);
+        }
+        to {
+          transform: rotate(360deg) translateY(20px);
+        }
+      }
+
+      .bg-gradient-modern {
+        background: linear-gradient(135deg, #82e2da 0%, #e597c5 100%);
+        min-height: 100vh;
+      }
+
+      .header-overlay {
+        background: rgba(255, 255, 255, 0.3); 
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        }
+
+    </style>
+  </head>
+  <body class="bg-gradient-modern">
+    <!-- decor -->
+    <div class="decor circle"></div>
+    <div class="decor circle2"></div>
+    <div class="decor square"></div>
+    <div class="decor cross"></div>
+
+    <header class="header-overlay">
+      <img
+        src="https://media.licdn.com/dms/image/v2/D4D03AQE9EDOiUfjYNQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1702903609851?e=1759363200&v=beta&t=iSU4YmGO2K3vHpp39QURL7lvpfxCABBV8PBMS9qDk1g"
+        alt="Photo profil"
+      />
+      <h1>Jean Christian</h1>
+      <h2>Développeur Fullstack & Chef de projet digital / Business Analyst</h2>
+      <!-- Accroche sous le titre -->
+      <p class="tagline">
+        <i class="fa-solid fa-bullseye"></i>
+        <span
+          >J’aide les entreprises et entrepreneurs à donner vie à leurs projets
+          digitaux, de la conception à la commercialisation.</span
+        >
+      </p>
+    </header>
+
+    <section class="about">
+      <p>
+        👋 Salut ! Je suis développeur fullstack et chef de projet digital avec
+        6 ans d’expérience. J’ai eu le plaisir de travailler avec des
+        entrepreneurs, startups, PME et entités gouvernementales à Madagascar et en Europe. </br>
+        Mon objectif ? Trouver des solutions simples et efficaces aux problèmes
+        les plus complexes 🚀
+      </p>
+      <div class="divider"></div>
+    </section>
+
+    <section class="skills">
+      <h3><i class="fas fa-briefcase"></i> Mes technologies phares</h3>
+      <div class="tech-list">
+        <div class="tech-item">
+          <i class="fa-brands fa-node-js"></i>
+          <p>NodeJS</p>
+        </div>
+        <div class="tech-item">
+          <i class="fa-brands fa-laravel"></i>
+          <p>Laravel</p>
+        </div>
+        <div class="tech-item">
+          <i class="fa-brands fa-react"></i>
+          <p>ReactJS</p>
+        </div>
+        <div class="tech-item">
+          <i class="fa-brands fa-angular"></i>
+          <p>Angular</p>
+        </div>
+        <div class="tech-item">
+          <i class="fa-brands fa-react"></i>
+          <p>React Native</p>
+        </div>
+        <div class="tech-item">
+          <i class="fa-solid fa-code"></i>
+          <p>NextJS</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </section>
+
+    <section class="services">
+      <h3><i class="fas fa-cogs"></i> Mes services</h3>
+      <div class="service-list">
+        <div class="service-item">
+          <i class="fa-solid fa-rocket"></i>
+          <h4>Développement</h4>
+          <p>
+            Création de solutions digitales sur mesure, avec possibilité de
+            monter une équipe complète selon la taille du projet.
+          </p>
+        </div>
+        <div class="service-item">
+          <i class="fa-solid fa-wrench"></i>
+          <h4>Maintenance</h4>
+          <p>
+            Support continu, mises à jour et optimisation pour garantir la
+            stabilité et la performance de vos systèmes.
+          </p>
+        </div>
+        <div class="service-item">
+          <i class="fa-solid fa-project-diagram"></i>
+          <h4>Gestion de projet</h4>
+          <p>
+            Expertise agile (Scrum), planification et suivi avec Jira comme
+            outil principal.
+          </p>
+        </div>
+        <div class="service-item">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <h4>Cahier des charges</h4>
+          <p>
+            Élaboration complète en tant que business analyst pour assurer la
+            réussite du projet.
+          </p>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </section>
+
+    <section class="references">
+      <h3><i class="fas fa-briefcase"></i> Références</h3>
+      <div class="references-grid">
+        <div class="reference-card">
+          <img
+            src="https://i.pinimg.com/1200x/a9/49/eb/a949ebf78da43301dbf1ac70a03bf92c.jpg"
+            alt="Projet 1"
+          />
+          <div class="reference-info">
+            <h3>Dossier Parfait</h3>
+            <p>Développement d’une solution digitale complète.</p>
+          </div>
+        </div>
+        <div class="reference-card">
+          <img
+            src="https://i.pinimg.com/1200x/a9/49/eb/a949ebf78da43301dbf1ac70a03bf92c.jpg"
+            alt="Projet 2"
+          />
+          <div class="reference-info">
+            <h3>COI Starfish</h3>
+            <p>Maintenance et accompagnement technique.</p>
+          </div>
+        </div>
+        <div class="reference-card">
+          <img
+            src="https://i.pinimg.com/1200x/a9/49/eb/a949ebf78da43301dbf1ac70a03bf92c.jpg"
+            alt="Projet 3"
+          />
+          <div class="reference-info">
+            <h3>CompaRecycle B2B</h3>
+            <p>Analyse Business et Gestion de projet agile avec Jira.</p>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </section>
+
+    <section class="contact">
+      <h3>📩 Contacte-moi</h3>
+      <form>
+        <input type="text" name="name" placeholder="Ton nom" required />
+        <input type="email" name="email" placeholder="Ton email" required />
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="Ton message"
+          required
+        ></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+    </section>
+
+    <footer>
+      © 2025 Jean Christian — Portfolio. Fait avec ❤️ et beaucoup de café ☕.
+    </footer>
+
+    <!-- Script pour l’animation au scroll -->
+    <script>
+      const sections = document.querySelectorAll("section");
+      const revealOnScroll = () => {
+        sections.forEach((sec) => {
+          const pos = sec.getBoundingClientRect().top;
+          if (pos < window.innerHeight - 100) {
+            sec.classList.add("visible");
+          }
+        });
+      };
+      window.addEventListener("scroll", revealOnScroll);
+      revealOnScroll();
+    </script>
+  </body>
+</html>
